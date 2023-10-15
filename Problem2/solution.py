@@ -1,5 +1,4 @@
 
-
 result = ""
 
 # with open("input.txt", "r") as f:
