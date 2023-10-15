@@ -40,19 +40,28 @@ else:
     #     difference += 24*60
 
 
-    if ( am_pm1 == "am" and am_pm2 == "am"):
-        if (h2 > h1):  
-            difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
-        else:
-            difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
-    elif( am_pm1 == "am" and am_pm2 == "pm"):
-        difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1)
-    elif( am_pm1 == "pm" and am_pm2 == "am"):
-        difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + h2 * 3600 + m2*60 + s2
-    elif( am_pm1 == "pm" and am_pm2 == "pm"):
-        if (h2 > h1):  
-            difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
-        else:
-            difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
+    # if ( am_pm1 == "am" and am_pm2 == "am"):
+    #     if (h2 > h1):  
+    #         difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
+    #     else:
+    #         difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
+    # elif( am_pm1 == "am" and am_pm2 == "pm"):
+    #     difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1)
+    # elif( am_pm1 == "pm" and am_pm2 == "am"):
+    #     difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + h2 * 3600 + m2*60 + s2
+    # elif( am_pm1 == "pm" and am_pm2 == "pm"):
+    #     if (h2 > h1):  
+    #         difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
+    #     else:
+    #         difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
 
-    print(int(difference/60))
+    temph = h1
+    counth = 0
+    while(temph != h2):
+        counth += 1
+        temph += 1
+        temph %= 24
+
+    total = int (counth*60 + (m2 - m1) + (s2 - s1)/60)
+
+    print(total)
