@@ -30,13 +30,29 @@ else:
     elif am_pm2 == 'am' and h2 == 12:
         h2 = 0
     
-    difference = (60 * h2 + m2 + s2/60) - (60 * h1 + m1 + s1/60) 
+    # difference = (60 * h2 + m2 + s2/60) - (60 * h1 + m1 + s1/60) 
 
-    if am_pm1 == "pm":
-        difference *= -1
-        difference /= 2
+    # if am_pm1 == "pm":
+    #     difference *= -1
+    #     difference /= 2
 
-    if am_pm1 == am_pm2 and h2 < h1:
-        difference += 24*60
+    # if am_pm1 == am_pm2 and h2 < h1:
+    #     difference += 24*60
 
-    print(int(difference))
+
+    if ( am_pm1 == "am" and am_pm2 == "am"):
+        if (h2 > h1):  
+            difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
+        else:
+            difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
+    elif( am_pm1 == "am" and am_pm2 == "pm"):
+        difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1)
+    elif( am_pm1 == "pm" and am_pm2 == "am"):
+        difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + h2 * 3600 + m2*60 + s2
+    elif( am_pm1 == "pm" and am_pm2 == "pm"):
+        if (h2 > h1):  
+            difference = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1*60 + s1) 
+        else:
+            difference = (23 - h1) * 3600 + (59 - m1) * 60 + (59 - s1) + (h2 * 3600 + m2*60 + s2)
+
+    print(int(difference/60))
