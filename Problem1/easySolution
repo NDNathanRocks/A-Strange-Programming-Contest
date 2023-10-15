@@ -1,0 +1,44 @@
+import datetime
+import math
+
+time_input1 = input('')
+time_input2 = input('')
+
+h1, m1, s_am_pm1 = map(str.strip, time_input1.split(':'))
+s1, am_pm1 = s_am_pm1.split()
+
+h2, m2, s_am_pm2 = map(str.strip, time_input2.split(':'))
+s2, am_pm2 = s_am_pm2.split()
+
+if am_pm1 not in ('am', 'pm') or am_pm2 not in ('am', 'pm'):
+    print("Invalid time format. Use 'am' or 'pm'")
+else:
+    h1 = int(h1)
+    m1 = int(m1)
+    s1 = int(s1)
+    h2 = int(h2)
+    m2 = int(m2)
+    s2 = int(s2)
+
+    if am_pm1 == 'pm' and h1 != 12:
+        h1 += 12
+    elif am_pm1 == 'am' and h1 == 12:
+        h1 = 0
+
+    if am_pm2 == 'pm' and h2 != 12:
+        h2 += 12
+    elif am_pm2 == 'am' and h2 == 12:
+        h2 = 0
+
+# datetime(year, month, day, hour, minute, second)
+a = datetime.datetime(2023, 10, 15, h1, m1, s1)
+
+if h2 < h1 or (h2 > h1 and m2 < m1) or (h2 > h1 and m2 > m1 and s2 < s1):
+    b = datetime.datetime(2023, 10, 16, h2, m2, s2)
+else:
+    b = datetime.datetime(2023, 10, 15, h2, m2, s2)
+ 
+c = b-a
+
+minutes = math.floor(c.seconds / 60)
+print(minutes)
